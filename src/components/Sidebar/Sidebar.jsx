@@ -17,6 +17,7 @@ import { useGetGenresQuery } from '../../services/TMDB';
 import genreIcons from '../../assets/genres';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectgenreIdOrCategory } from '../../features/currentGenreOrCaregory';
+import imageLogo from '../../assets/images/cinema-removebg.png'
 
 const categories = [
   { label: 'Popular', value: 'popular' },
@@ -31,10 +32,9 @@ const demeCategories = [
 ];
 
 const Sidebar = ({ setOpenMobile }) => {
-  const redLogo =
-    'https://fontmeme.com/permalink/210930/8531c658a743debe1e1aa1a2fc82006e.png';
+  const redLogo ='../assets/images/cinema.png'
   const blueLogo =
-    'https://fontmeme.com/permalink/210930/6854ae5c7f76597cf8680e48a2c8a50a.png';
+    '../assets/images/cinema.png';
   const theme = useTheme();
   const classes = useStyles();
   const { data, isFetching } = useGetGenresQuery();
@@ -52,7 +52,8 @@ const Sidebar = ({ setOpenMobile }) => {
       <Link to="/" className={classes.imageLink}>
         <img
           className={classes.image}
-          src={theme.palette.mode === 'light' ? redLogo : blueLogo}
+          // src={theme.palette.mode === 'light' ? redLogo : blueLogo}
+          src={imageLogo}
           alt="logo"
         />
       </Link>

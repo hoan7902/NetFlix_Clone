@@ -33,6 +33,7 @@ import genreIcons from '../../assets/genres';
 import { selectgenreIdOrCategory } from '../../features/currentGenreOrCaregory';
 import MovieList from '../MovieList/MovieList';
 import { userSelector } from '../../features/auth';
+import { toast } from 'react-toastify';
 
 const MoviesInformation = () => {
   const { user } = useSelector(userSelector);
@@ -72,8 +73,12 @@ const MoviesInformation = () => {
   }, [watchlistMovies, data]);
 
   const addToFavorites = async () => {
+    if (!localStorage.getItem('session_id')) {
+      toast.error('You must login for this action!');
+      return;
+    }
     setIsMovieFavorited(!isMovieFavorited);
-    await axios.post(
+    const { data } = await axios.post(
       `https://api.themoviedb.org/3/account/${user.id}/favorite?api_key=${
         process.env.REACT_APP_TMDB_KEY
       }&session_id=${localStorage.getItem('session_id')}`,
@@ -83,10 +88,20 @@ const MoviesInformation = () => {
         favorite: !isMovieFavorited,
       }
     );
+    if (data.success) {
+      toast.success(data.status_message);
+    }
+    else {
+      toast.error(data.status_message);
+    }
   };
 
   const addToWatchList = async () => {
-    await axios.post(
+    if (!localStorage.getItem('session_id')) {
+      toast.error('You must login for this action!');
+      return;
+    }
+    const { data } = await axios.post(
       `https://api.themoviedb.org/3/account/${user.id}/watchlist?api_key=${
         process.env.REACT_APP_TMDB_KEY
       }&session_id=${localStorage.getItem('session_id')}`,
@@ -96,6 +111,12 @@ const MoviesInformation = () => {
         watchlist: !isMovieWatchlisted,
       }
     );
+    if (data.success) {
+      toast.success(data.status_message);
+    }
+    else {
+      toast.error(data.status_message);
+    }
     setIsMovieWatchlisted(!isMovieWatchlisted);
   };
 

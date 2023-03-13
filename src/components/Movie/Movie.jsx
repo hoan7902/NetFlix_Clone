@@ -15,7 +15,7 @@ const Movie = ({ movie, i }) => {
             src={
               movie.poster_path
                 ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
-                : 'https://file3.qdnd.vn/data/images/0/2023/02/26/trungthanh_tv/ronaldo%201.jpeg?dpi=150&quality=100&w=870'
+                : ''
             }
           />
           <Typography className={classes.title} variant="h5">
