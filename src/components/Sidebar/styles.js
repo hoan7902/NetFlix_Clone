@@ -9,8 +9,6 @@ export default makeStyles((theme) => ({
   },
   image: {
     width: '70%',
-    backgroundColor: theme.palette.mode === 'dark' && 'black',
-    // filter: theme.palette.mode === 'dark' && 'brightness(10%) contrast(90%)',
   },
   links: {
     color: theme.palette.text.primary,
