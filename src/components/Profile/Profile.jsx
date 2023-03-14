@@ -11,10 +11,8 @@ const logout = () => {
   window.location.href = '/';
 };
 
-const favoriteMovies = [];
-
 const Profile = () => {
-  const { user } = useSelector((state) => state.user);
+  const { user } = useSelector(userSelector);
   const { data: favoriteMovies, refetch: refetchFavorites } = useGetListQuery({
     listName: 'favorite/movies',
     accountId: user.id,
@@ -32,7 +30,7 @@ const Profile = () => {
   useEffect(() => {
     refetchFavorites()
     refetchWatchlisted()
-  }, [])
+  }, [refetchFavorites, refetchWatchlisted])
   return (
     <Box>
       <Box display="flex" justifyContent="space-between">

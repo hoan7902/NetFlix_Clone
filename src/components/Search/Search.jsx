@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { TextField, InputAdornment } from "@mui/material";
 import { Search as SearchIcon } from "@mui/icons-material";
-import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import useStyles from "./styles";
 import { searchMovie } from "../../features/currentGenreOrCaregory";
 
@@ -11,7 +10,7 @@ const Search = () => {
   const dispatch = useDispatch();
   const [query, setQuery] = useState();
   const handleKeyPress = (e) => {
-    if (e.key == "Enter") {
+    if (e.key === "Enter") {
         dispatch(searchMovie(query))
     }
   };

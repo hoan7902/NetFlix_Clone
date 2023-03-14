@@ -30,7 +30,7 @@ const Navbar = () => {
   const [openMobile, setOpenMobile] = useState(false);
   const token = localStorage.getItem('request_token');
   const sessionIdFromLocal = localStorage.getItem('session_id');
-  const { isAuthenticated, user } = useSelector(userSelector);
+  const { user } = useSelector(userSelector);
   const dispatch = useDispatch();
   const colorMode = useContext(ColorModeContext)
 
@@ -41,6 +41,7 @@ const Navbar = () => {
           const { data: userData } = await moviesApi.get(
             `/account?session_id=${sessionIdFromLocal}`
           );
+          dispatch(setUser(userData));
         } else {
           const sessionId = await createSessionId();
           const { data: userData } = await moviesApi.get(
@@ -51,7 +52,7 @@ const Navbar = () => {
       }
     };
     loginUser();
-  }, [token]);
+  }, [token, dispatch, sessionIdFromLocal]);
 
   return (
     <div>

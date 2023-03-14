@@ -22,7 +22,7 @@ import popular from './popular.png';
 import topRated from './top rated.png';
 import upcoming from './upcoming.png';
 
-export default {
+const objectExport = {
   action,
   adventure,
   animation,
@@ -47,3 +47,5 @@ export default {
   'top rated': topRated,
   upcoming,
 };
+
+export default objectExport

@@ -8,10 +8,8 @@ import {
   ListItemIcon,
   CircularProgress,
   Box,
-  ListItemButton,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { useTheme } from '@mui/styles';
 import useStyles from './styles';
 import { useGetGenresQuery } from '../../services/TMDB';
 import genreIcons from '../../assets/genres';
@@ -25,17 +23,7 @@ const categories = [
   { label: 'Upcoming', value: 'upcoming' },
 ];
 
-const demeCategories = [
-  { label: 'Comedy', value: 'comedy' },
-  { label: 'Action', value: 'action' },
-  { label: 'Horror', value: 'horror' },
-];
-
 const Sidebar = ({ setOpenMobile }) => {
-  const redLogo ='../assets/images/cinema.png'
-  const blueLogo =
-    '../assets/images/cinema.png';
-  const theme = useTheme();
   const classes = useStyles();
   const { data, isFetching } = useGetGenresQuery();
   const dispatch = useDispatch();
@@ -45,7 +33,7 @@ const Sidebar = ({ setOpenMobile }) => {
 
   useEffect(() => {
     setOpenMobile(false);
-  }, [genreIdOrCategoryName]);
+  }, [genreIdOrCategoryName, setOpenMobile]);
 
   return (
     <>
@@ -73,6 +61,7 @@ const Sidebar = ({ setOpenMobile }) => {
                   src={genreIcons[label.toLowerCase()]}
                   className={classes.genreImage}
                   height={30}
+                  alt='icon'
                 />
               </ListItemIcon>
               <ListItemText primary={label} />
@@ -101,6 +90,7 @@ const Sidebar = ({ setOpenMobile }) => {
                     src={genreIcons[name.toLowerCase()]}
                     className={classes.genreImage}
                     height={30}
+                    alt='icon'
                   />
                 </ListItemIcon>
                 <ListItemText primary={name} />
